@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_base/css/base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    {% block links %}
+    {% endblock %}
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="{% static 'app_base/video/background.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+    <div class="container-wrapper">
+        <aside class="aside_container">
+            <div class="container" id="container">
+                <h1>LinkLounge</h1>
+                <p style="position: relative; left: 40px;">"Місце, де розмови оживають"</p>
+            </div>
+            <div class="container-second" id="container">
+                <div class="flex-container">
+                    <a class="a {% if request.path == '/main/' %}active{% endif %}" href="{% url 'main' %}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                      
+                        <p class="side_bar_1_text" >моя сторiнка</p>
+                    </a>
+                </div>
+                <div class="flex-container">
+                    <a class="a {% if request.path == '/all_users/' %}active{% endif %}" href="{% url 'all_users' %}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <p  class="side_bar_1_text">усi користувачi</p>
+                    </a>
+                </div>
+                <div class="flex-container">
+
+<a class="a {% if request.path == '/my_messages' %}active{% endif %}" href="{% url 'my_messages' %}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        <p  class="side_bar_1_text">особистi повiдомлення</p>
+                    </a>
+                </div>
+                <div class="flex-container">
+                    <a class="a {% if request.path == '/groups/' %}active{% endif %}" href="{% url 'groups' %}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M291.63-317.54q-12.21 0-21.15-8.84-8.94-8.85-8.94-21.31v-40h460.77l25.38 25.38v-355.84h40q12.46 0 21.31 8.84 8.85 8.85 8.85 21.14v490.02L698.46-317.54H291.63Zm-149.48-27.69v-459.24q0-12.3 8.85-21.15 8.85-8.84 21.31-8.84h468.31q12.46 0 21.3 8.84 8.85 8.85 8.85 21.16v309.84q0 12.31-8.85 21.16-8.84 8.84-21.3 8.84H261.54L142.15-345.23Zm491.7-156.31v-296H179.08v351.39l55.38-55.39h399.39Zm-454.77 0v-296 296Z"/></svg>
+                        <p class="side_bar_2_text">мої бесiди</p>
+                    </a>
+                </div>
+            </div>
+            {% if user %}
+                <div class="container-third" id="container">
+                    <div class="flex-container">
+                        <div class="user">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-504q-48.38 0-82.65-34.27t-34.27-82.65q0-48.39 34.27-82.66 34.27-34.27 82.65-34.27t82.65 34.27q34.27 34.27 34.27 82.66 0 48.38-34.27 82.65T480-504ZM205.54-223.38v-62.16q0-24.23 13.86-44.95 13.86-20.72 38.07-32.36 56.25-26.57 111.87-40.11 55.62-13.54 110.67-13.54 55.05 0 110.75 13.52t111.86 40.1q24.18 11.64 38.01 32.37 13.83 20.73 13.83 44.97v62.16H205.54Zm36.92-36.93h475.08v-25.13q0-13.6-8.58-25.25-8.58-11.66-23.84-20.12-49.37-23.81-100.99-36.29t-104.18-12.48q-52.91 0-104.35 12.48-51.45 12.48-100.33 36.29-15.65 8.46-24.23 20.19t-8.58 25.08v25.23ZM480-540.92q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5t-56.5-23.5q-33 0-56.5 23.5t-23.5 56.5q0 33 23.5 56.5t56.5 23.5Zm0-80Zm0 360.61Z"/></svg>
+                            <p class="a-side-bar-3-text" >{{ request.user.username }}</p>
+                        </div>
+                    </div>
+                    <div class="flex-container">
+                        <a class="a" href="{% url 'logout' %}"><svg id="icon_mirror_horizontal" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M227.51-163.08q-25.76 0-43.56-17.8t-17.8-43.74v-507.69q0-25.94 17.8-43.74t43.56-17.8h253.87v36.93H227.69q-9.23 0-16.92 7.69-7.69 7.69-7.69 16.92v507.69q0 9.24 7.69 16.93 7.69 7.69 16.92 7.69h253.69v36.92H227.51Zm430.34-179.57-26.35-25.81L723.04-460h-353.5v-36.92h353.5l-91.54-91.54 26.35-26.19 136 136-136 136Z"/></svg>
+                            <p class="side-bar-2-text">вийти</p>
+                        </a>
+                    </div>
+                </div>  
+            {% endif %}  
+        
+        </aside>
+
+<main class="main_container">
+            
+                {% block content %}
+                {% endblock %}
+            
+        </main>
+        
+    </div>
+    <div class="menu">
+        <div class="menu-icons">
+            <a class="menu-a" href="{% url 'main' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              
+            </a>
+        </div>
+        <div class="menu-icons">
+            <a class="menu-a" href="{% url 'all_users' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </a>
+        </div>
+        <div class="menu-icons">
+            <a class="menu-a" href="{% url 'my_messages' %}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </a>
+        </div>
+        <div class="menu-icons">
+            <a class="menu-a" href="{% url 'groups' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M291.63-317.54q-12.21 0-21.15-8.84-8.94-8.85-8.94-21.31v-40h460.77l25.38 25.38v-355.84h40q12.46 0 21.31 8.84 8.85 8.85 8.85 21.14v490.02L698.46-317.54H291.63Zm-149.48-27.69v-459.24q0-12.3 8.85-21.15 8.85-8.84 21.31-8.84h468.31q12.46 0 21.3 8.84 8.85 8.85 8.85 21.16v309.84q0 12.31-8.85 21.16-8.84 8.84-21.3 8.84H261.54L142.15-345.23Zm491.7-156.31v-296H179.08v351.39l55.38-55.39h399.39Zm-454.77 0v-296 296Z"/></svg>
+            </a>
+        </div>
+        <div class="menu-icons">
+
+<a class="menu-a" href="{% url 'main' %}"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e8eaed"><path d="M480-504q-48.38 0-82.65-34.27t-34.27-82.65q0-48.39 34.27-82.66 34.27-34.27 82.65-34.27t82.65 34.27q34.27 34.27 34.27 82.66 0 48.38-34.27 82.65T480-504ZM205.54-223.38v-62.16q0-24.23 13.86-44.95 13.86-20.72 38.07-32.36 56.25-26.57 111.87-40.11 55.62-13.54 110.67-13.54 55.05 0 110.75 13.52t111.86 40.1q24.18 11.64 38.01 32.37 13.83 20.73 13.83 44.97v62.16H205.54Zm36.92-36.93h475.08v-25.13q0-13.6-8.58-25.25-8.58-11.66-23.84-20.12-49.37-23.81-100.99-36.29t-104.18-12.48q-52.91 0-104.35 12.48-51.45 12.48-100.33 36.29-15.65 8.46-24.23 20.19t-8.58 25.08v25.23ZM480-540.92q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5t-56.5-23.5q-33 0-56.5 23.5t-23.5 56.5q0 33 23.5 56.5t56.5 23.5Zm0-80Zm0 360.61Z"/></svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

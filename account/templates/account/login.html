@@ -1,0 +1,33 @@
+{% extends "app_base/log-reg.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'app_base/css/login.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="text-head">
+        <h1 id="zpovernenyam">З поверненням</h1>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="div-u-p-r_me">
+            <div class="username-div">
+                <label for="username">Логін:</label>
+                <input type="text" class="input" id="username" name="username" class="form-control" placeholder="Введіть логін">
+                {% for error in form.username.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="password-div">
+                <label for="password">Пароль:</label>
+                <input type="password" class="input" id="password" name="password" class="form-control" placeholder="Введіть пароль">
+                {% for error in form.password.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <button class="button" type="submit">Увійти</button>
+        </div>
+    </form>
+    <p class="new_account">Немає аккаунту? <a href="/signup/">Зареєструватися</a></p>
+</div>
+{% endblock %}
